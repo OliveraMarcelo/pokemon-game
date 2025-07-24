@@ -40,5 +40,17 @@
     "vite-plugin-vue-devtools": "^7.3.1",
     "vitest": "^1.6.0",
     "vue-tsc": "^2.0.21"
-  }
+  },
+  "description": "This template should help get you started developing with Vue 3 in Vite.",
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OliveraMarcelo/pokemon-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OliveraMarcelo/pokemon-game/issues"
+  },
+  "homepage": "https://github.com/OliveraMarcelo/pokemon-game#readme"
 }
