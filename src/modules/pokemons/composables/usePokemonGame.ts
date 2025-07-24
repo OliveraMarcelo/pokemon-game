@@ -14,7 +14,7 @@ const getPokemons =async ():Promise<Pokemon[]> =>{
     const response = await pokemonApi.get<PokemonListResponse>('/?limit=151');
     const pokemonsArray = response.data.results.map(pokemon =>{
         const urlParts = pokemon.url.split('/');
-        const id = urlParts.at(-2) ?? 0
+        const id = urlParts.length >= 2 ? urlParts[urlParts.length - 2] : 0
         return {
             name : pokemon.name,
             id : +id
