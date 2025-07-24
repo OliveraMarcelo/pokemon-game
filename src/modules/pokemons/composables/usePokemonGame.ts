@@ -6,7 +6,9 @@ export const usePokemonGame = ()=>{
 const gameStatus = ref<GameStatus>(GameStatus.Playing);
 const pokemons = ref<Pokemon[]>([])
 const pokemonsOptions = ref<Pokemon[]>([])
-
+const randomPokemon = computed(() => {
+    return pokemonsOptions.value[Math.floor(Math.random() * pokemonsOptions.value.length)];
+})
 //propiedad computada cuando estoy cargando
 const isLoading = computed(()=>pokemons.value.length === 0);
 
@@ -45,6 +47,7 @@ return{
     gameStatus,
     isLoading,
     pokemonsOptions,
+    randomPokemon,
     //methods
     pokemons,
 
