@@ -1,16 +1,25 @@
 <template>
-    <section class="mt-5">
-        <ul>
-            <li>Pokemon 1</li>
-            <li>Pokemon 2</li>
-            <li>Pokemon 3</li>
-            <li>Pokemon 4</li>
-        </ul>
+    <section class="mt-5 flex flex-col">
+        <button v-for="option in options" @click="$emit('selectedOption',option.id)" class="w-full" :key="option.id">
+            <li class="flex justify-center items-center">
+                <span class="text-lg">{{ option.name }}</span>
+                <PokemonPicture :pokemon-id="option.id" />
+            </li>
+
+        </button>
     </section>
 </template>
 
 <script setup lang="ts">
-
+import type { Pokemon } from "../interfaces";
+import { computed } from "vue";
+interface Props {
+    options: Pokemon[];
+}
+const props = defineProps<Props>();
+defineEmits<{
+    selectedOption: [id: number];
+}>();   
 </script>
 
 <style scoped>

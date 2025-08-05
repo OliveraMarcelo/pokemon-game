@@ -1,13 +1,14 @@
 import { computed, onMounted, ref } from "vue"
 import { type Pokemon, type PokemonListResponse, GameStatus} from "../interfaces"
 import { pokemonApi } from "../api/pokemonApi";
-
+import confetti from "canvas-confetti";
 export const usePokemonGame = ()=>{
 const gameStatus = ref<GameStatus>(GameStatus.Playing);
 const pokemons = ref<Pokemon[]>([])
 const pokemonsOptions = ref<Pokemon[]>([])
 const randomPokemon = computed(() => {
-    return pokemonsOptions.value[Math.floor(Math.random() * pokemonsOptions.value.length)];
+    const randomIndex = Math.floor(Math.random() * pokemonsOptions.value.length);
+    return pokemonsOptions.value[randomIndex];
 })
 //propiedad computada cuando estoy cargando
 const isLoading = computed(()=>pokemons.value.length === 0);
@@ -29,7 +30,19 @@ const getNextOptions = ( howMany: number = 4)=>{
     gameStatus.value = GameStatus.Playing
     pokemonsOptions.value= pokemons.value.slice(0,howMany)
     pokemons.value= pokemons.value.slice(howMany)
-
+}
+const checkAnswer = (id: number) => {
+    if (id === randomPokemon.value.id) {
+        gameStatus.value = GameStatus.Won;
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+    }
+    else {
+        gameStatus.value = GameStatus.Lost;
+    }
 }
 //mezclemos de manera aleatorioa
     onMounted(async()=>{
@@ -50,6 +63,7 @@ return{
     randomPokemon,
     //methods
     pokemons,
+    checkAnswer,
 
 }
 }
