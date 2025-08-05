@@ -64,6 +64,7 @@ return{
     //methods
     pokemons,
     checkAnswer,
+    getNextOptions
 
 }
 }

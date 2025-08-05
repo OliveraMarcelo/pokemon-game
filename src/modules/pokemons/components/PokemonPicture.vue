@@ -1,6 +1,7 @@
 <template>
    <section >
-    <img :class=" showPokemon ? '' : 'brightness-0' " :src="pokemonImage" alt="" srcset="">
+    <img v-if="!showPokemon" class="brightness-0 h-[200px]" :src="pokemonImage">
+    <img v-else class="h-[200px]" :src="pokemonImage">
    </section>
 </template>
 
@@ -10,7 +11,9 @@ interface Props {
     pokemonId: number;
     showPokemon?: boolean;
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+    showPokemon: false
+});
 const pokemonImage = computed(() => {
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.pokemonId}.svg`;
 });
