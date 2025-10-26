@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
     showPokemon: false
 });
 const pokemonImage = computed(() => {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.pokemonId}.svg`;
+    return `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${props.pokemonId}.svg`;
 });
 </script>
 
